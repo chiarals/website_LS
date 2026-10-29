@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# AI assistants are welcome too: see /llms.txt
+Sitemap: https://lasputacchiera.com/sitemap.xml

@@ -8,7 +8,7 @@ function readLang() {
   const fromUrl = new URLSearchParams(location.search).get('lang');
   if (I18N[fromUrl]) return fromUrl;
   try { const saved = localStorage.getItem('lang'); if (I18N[saved]) return saved; } catch (e) {}
-  return navigator.language.toLowerCase().startsWith('it') ? 'it' : 'en';
+  return 'it'; // Italian by default (also what search engines index); EN is one click away
 }
 
 function setLang(lang) {
