@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F3EEE4">
+  <title>La Sputacchiera</title>
+  <meta name="description" content="Corsi sul vino personalizzati e degustazioni su regioni meno conosciute. Milano, home-based, piccoli gruppi.">
+  <link rel="icon" type="image/png" href="assets/logo-liquido.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top bar: the label on the left follows the section in view -->
+  <header class="topbar">
+    <a href="#home" class="section-label" aria-live="polite">
+      <span class="label-track"></span>
+    </a>
+    <div class="lang-switch" role="group" aria-label="Lingua / Language">
+      <button type="button" data-lang="it">IT</button><span aria-hidden="true">/</span><button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section hero" data-label="label.home">
+      <div class="hero-intro">
+        <img class="liquid-logo" src="assets/logo-liquido.png" alt="">
+        <h1 class="wordmark"><img src="assets/logo.svg" alt="La Sputacchiera"></h1>
+        <p class="hero-text" data-i18n="hero.text"></p>
+        <div class="pills">
+          <a class="pill" href="#corsi" data-i18n="hero.cta"></a>
+          <a class="pill" href="chi-sono.html" data-i18n="hero.about"></a>
+          <a class="pill" href="#contatti" data-i18n="hero.contact"></a>
+        </div>
+      </div>
+
+      <div class="gallery reveal">
+        <img src="assets/foto/terrazza-tavolata.jpg" data-i18n-alt="alt.tavolata" alt="" style="--r:0.8" loading="lazy">
+        <img src="assets/foto/terrazza-tavolata-2.jpg" data-i18n-alt="alt.tavolata2" alt="" style="--r:0.97" loading="lazy">
+      </div>
+    </section>
+
+    <section id="corsi" class="section" data-label="label.corsi">
+      <h2 class="visually-hidden" data-i18n="label.corsi"></h2>
+      <p class="body-text reveal" data-i18n="corsi.intro"></p>
+      <div class="cards reveal">
+        <article class="open"><h3><button type="button" class="card-head" aria-controls="corso-1"><span data-i18n="corsi.c1.t"></span></button></h3><p id="corso-1" data-i18n="corsi.c1.d"></p></article>
+        <article><h3><button type="button" class="card-head" aria-controls="corso-2"><span data-i18n="corsi.c2.t"></span></button></h3><p id="corso-2" data-i18n="corsi.c2.d"></p></article>
+        <article><h3><button type="button" class="card-head" aria-controls="corso-3"><span data-i18n="corsi.c3.t"></span></button></h3><p id="corso-3" data-i18n="corsi.c3.d"></p></article>
+      </div>
+      <div class="gallery reveal">
+        <img src="assets/foto/presentazione-1.jpg" data-i18n-alt="alt.lezione1" alt="" style="--r:1.333" loading="lazy">
+        <img src="assets/foto/presentazione-2.jpg" data-i18n-alt="alt.lezione2" alt="" style="--r:1.333" loading="lazy">
+      </div>
+    </section>
+
+    <section id="degustazioni" class="section" data-label="label.degustazioni">
+      <h2 class="visually-hidden" data-i18n="label.degustazioni"></h2>
+      <p class="body-text reveal" data-i18n="degustazioni.intro"></p>
+      <div class="gallery reveal">
+        <img src="assets/foto/terrazza-racconto.jpg" data-i18n-alt="alt.racconto" alt="" style="--r:0.536" loading="lazy">
+        <img src="assets/foto/terrazza-calice.jpg" data-i18n-alt="alt.calice" alt="" style="--r:0.627" loading="lazy">
+        <img src="assets/foto/terrazza-sorriso.jpg" data-i18n-alt="alt.sorriso" alt="" style="--r:0.846" loading="lazy">
+      </div>
+      <div class="gallery reveal">
+        <img src="assets/foto/bottiglia-macchiona.jpg" data-i18n-alt="alt.bottiglia" alt="" style="--r:0.75" loading="lazy">
+        <img src="assets/foto/bottiglia-sancerre.jpg" data-i18n-alt="alt.bottiglia" alt="" style="--r:0.75" loading="lazy">
+        <img src="assets/foto/bottiglia-casa-mariol.jpg" data-i18n-alt="alt.bottiglia" alt="" style="--r:0.75" loading="lazy">
+      </div>
+    </section>
+
+    <section id="collaborazioni" class="section" data-label="label.collaborazioni">
+      <h2 class="visually-hidden" data-i18n="label.collaborazioni"></h2>
+      <p class="body-text reveal" data-i18n="collab.intro"></p>
+      <ul class="tags reveal">
+        <li data-i18n="collab.t1"></li>
+        <li data-i18n="collab.t2"></li>
+        <li data-i18n="collab.t3"></li>
+        <li data-i18n="collab.t4"></li>
+      </ul>
+      <div class="gallery reveal">
+        <img src="assets/foto/terrazza-dal-basso.jpg" data-i18n-alt="alt.terrazza" alt="" style="--r:0.75" loading="lazy">
+        <img src="assets/foto/terrazza-dal-basso-2.jpg" data-i18n-alt="alt.ospiti" alt="" style="--r:0.75" loading="lazy">
+        <img src="assets/foto/terrazza-notte.jpg" data-i18n-alt="alt.notte" alt="" style="--r:0.75" loading="lazy">
+      </div>
+    </section>
+
+    <section id="newsletter" class="section" data-label="label.newsletter">
+      <h2 class="visually-hidden" data-i18n="label.newsletter"></h2>
+      <div class="nl-grid">
+        <div class="nl-intro reveal">
+          <p class="nl-kicker">Substack</p>
+          <p class="nl-name">La Sputacchiera</p>
+          <p class="nl-desc" data-i18n="nl.desc"></p>
+          <form class="nl-form" action="https://lasputacchiera.substack.com/subscribe" method="get" target="_blank">
+            <label class="visually-hidden" for="nl-email" data-i18n="nl.email"></label>
+            <input id="nl-email" type="email" name="email" required autocomplete="email" data-i18n-placeholder="nl.email">
+            <button class="pill" type="submit" data-i18n="nl.subscribe"></button>
+          </form>
+          <p class="nl-note" data-i18n="nl.note"></p>
+          <a class="nl-follow" href="https://substack.com/@chiaraasselta" target="_blank" rel="noopener" data-i18n="nl.follow"></a>
+        </div>
+        <a class="nl-post reveal" href="https://lasputacchiera.substack.com/p/arak-ghoul-e-alambicchi" target="_blank" rel="noopener">
+          <picture>
+            <source media="(max-width: 640px)" srcset="assets/foto/newsletter-arak-thumb.jpg">
+            <img src="assets/foto/newsletter-arak.jpg" alt="" loading="lazy">
+          </picture>
+          <span class="nl-post-meta" data-i18n="nl.latest"></span>
+          <span class="nl-post-title">Arak, ghoul e alambicchi</span>
+          <span class="nl-post-read" data-i18n="nl.read"></span>
+        </a>
+      </div>
+    </section>
+
+    <section id="faq" class="section" data-label="label.faq">
+      <h2 class="visually-hidden" data-i18n="label.faq"></h2>
+      <div class="faq reveal">
+        <details><summary data-i18n="faq.q1"></summary><p data-i18n="faq.a1"></p></details>
+        <details><summary data-i18n="faq.q2"></summary><p data-i18n="faq.a2"></p></details>
+        <details><summary data-i18n="faq.q3"></summary><p data-i18n="faq.a3"></p></details>
+        <details><summary data-i18n="faq.q4"></summary><p data-i18n="faq.a4"></p></details>
+        <details><summary data-i18n="faq.q5"></summary><p data-i18n="faq.a5"></p></details>
+      </div>
+    </section>
+
+    <section id="contatti" class="section contact" data-label="label.contatti">
+      <h2 class="visually-hidden" data-i18n="label.contatti"></h2>
+      <p class="body-text contact-info reveal">
+        <a href="mailto:chiara.asselta@gmail.com">chiara.asselta@gmail.com</a><br>
+        <a href="tel:+393386965363">+39 338 696 5363</a>
+      </p>
+      <div class="pills">
+        <a class="pill" href="mailto:chiara.asselta@gmail.com" data-i18n="contact.write"></a>
+        <a class="pill" href="https://wa.me/393386965363" target="_blank" rel="noopener">WHATSAPP</a>
+        <a class="pill" href="https://substack.com/@chiaraasselta" target="_blank" rel="noopener">SUBSTACK</a>
+      </div>
+      <footer class="footer">
+        <img class="footer-logo" src="assets/logo.svg" alt="La Sputacchiera">
+        <small data-i18n="footer.place"></small>
+      </footer>
+    </section>
+  </main>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

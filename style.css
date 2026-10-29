@@ -1,0 +1,548 @@
+:root {
+  /* La Sputacchiera palette (from "LaSputacchiera Palette.pdf") */
+  --warm-sand: #DCC8A8;
+  --soft-ivory: #F3EEE4;
+  --deep-ink: #20242A;
+  --deep-burgundy: #541F2D;
+  --burnt-coral: #C96B5B;
+  --cinnabar-red: #C63D32;
+  --powder-pink: #D9B5B5;
+  /* Hex codes in the PDF are wrong for these: sampled from the swatches, to confirm */
+  --terracotta: #B05E42;
+  --berry-wave: #962A78;
+  --wine-pop: #8E1C33;
+  --vino-vivo: #AE1F3E;
+  --grape-vibes: #6B3088;
+  --orient-lilac: #9862A3;
+
+  --ink: var(--deep-ink);
+  --paper: var(--soft-ivory);
+  --accent: var(--powder-pink);
+  --gap: 4px;
+  --margin: 0.5rem;
+  --font: "Roboto Mono", ui-monospace, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--margin);
+  padding-top: max(var(--margin), env(safe-area-inset-top));
+  padding-left: max(var(--margin), env(safe-area-inset-left));
+  padding-right: max(var(--margin), env(safe-area-inset-right));
+  pointer-events: none;
+  /* white + difference = the text inverts whatever is behind it (dark on ivory, light over photos) */
+  color: #fff;
+  mix-blend-mode: difference;
+}
+.topbar a, .topbar button { pointer-events: auto; }
+
+.section-label {
+  font-size: clamp(1.75rem, min(5vw, 8vh), 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Rolling label: each section name is a line in a vertical track */
+.section-label {
+  display: block;
+  height: 1em;
+  overflow: hidden;
+}
+.label-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.label-track span { display: block; height: 1em; white-space: nowrap; }
+
+/* Language switch: small, the inactive language is dimmed */
+.lang-switch {
+  display: flex;
+  gap: 0.4em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding-top: 0.35rem;
+}
+.lang-switch button {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+.lang-switch button[aria-pressed="true"] { opacity: 1; }
+@media (hover: hover) { .lang-switch button:hover { opacity: 1; } }
+.lang-switch span { opacity: 0.3; }
+
+/* ---------- Sections ---------- */
+/* Same rhythm for every section: space above clears the fixed label, little below */
+.section {
+  padding: clamp(5rem, 13vh, 8rem) max(var(--margin), env(safe-area-inset-right)) clamp(1rem, 3vh, 2rem) max(var(--margin), env(safe-area-inset-left));
+  text-align: center;
+  scroll-margin-top: 0;
+}
+
+/* ---------- Hero: logo, wordmark and text fill exactly the first screen ---------- */
+.hero { padding-top: 0; }
+.hero-intro {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* equal space above and below, so the block sits in the true centre of the screen */
+  padding: clamp(3.5rem, 8vh, 5rem) 0;
+}
+.liquid-logo {
+  width: clamp(100px, min(14vw, 20vh), 200px);
+  margin: 0 auto;
+  display: block;
+  transform: rotate(var(--spin, 0deg));
+}
+.wordmark { margin: clamp(1rem, 4vh, 2.5rem) auto clamp(1.25rem, 5vh, 3rem); }
+.wordmark img {
+  width: min(92vw, 960px, 95vh);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.hero-text {
+  font-size: clamp(1.1rem, min(2vw, 3.2vh), 1.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+  max-width: 60rem;
+  margin: 0 auto clamp(1.5rem, 5vh, 3rem);
+  text-wrap: balance;
+}
+.hero-intro .pills .pill { margin-bottom: 0; }
+
+/* Section names are shown only by the top-left label; headings stay for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.body-text {
+  max-width: 40rem;
+  margin: 0 auto clamp(2rem, 6vh, 3.5rem);
+  text-wrap: pretty;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  line-height: 1.3;
+}
+
+.pill {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  padding: 0.15em 0.4em;
+  background: var(--paper);
+  border-bottom: 1px solid currentColor;
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+@media (hover: hover) { .pill:hover { background: var(--cinnabar-red); color: var(--soft-ivory); } }
+
+/* ---------- Justified photo rows ---------- */
+.gallery {
+  display: flex;
+  gap: var(--gap);
+  margin: 0 auto var(--gap);
+  /* never taller than the screen: width capped at row-ratio x 82% of viewport height */
+  max-width: calc(var(--sum, 10) * 82vh);
+}
+.gallery img {
+  flex: var(--r) 1 0;
+  aspect-ratio: var(--r);
+  min-width: 0;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  background: var(--warm-sand);
+}
+
+/* ---------- Corsi: three text columns ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  max-width: 72rem;
+  margin: 0 auto clamp(2.5rem, 7vh, 4rem);
+  text-align: left;
+  counter-reset: card;
+}
+.cards article {
+  border-top: 1px solid var(--ink);
+  padding-top: 0.75rem;
+  counter-increment: card;
+}
+/* the title is a button so phones can open/close it; on wider screens it is plain text */
+.card-head {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  cursor: default;
+  pointer-events: none;
+}
+.card-head::before {
+  content: counter(card, decimal-leading-zero);
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+  opacity: 0.6;
+}
+.cards h3 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.1rem, min(1.6vw, 2.8vh), 1.4rem);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.cards p { margin: 0; line-height: 1.45; font-size: 0.95rem; }
+
+/* ---------- Collaborazioni: one line of capitals, slash-separated ---------- */
+.tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto clamp(2.5rem, 7vh, 4rem);
+  max-width: 56rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+.tags li { display: inline; }
+.tags li + li::before { content: " / "; opacity: 0.5; }
+
+/* ---------- Chi sono (founder page) ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  max-width: 76rem;
+  margin: 0 auto;
+  text-align: left;
+}
+.about-photo { margin: 0; }
+.about-photo img {
+  display: block;
+  width: 100%;
+  max-height: 78vh;
+  aspect-ratio: 0.846;
+  object-fit: cover;
+  background: var(--warm-sand);
+}
+.about-role {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 0.5rem;
+}
+.about-name {
+  font-size: clamp(1.5rem, min(3vw, 5vh), 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0 0 clamp(1.25rem, 4vh, 2rem);
+}
+.about-text p:not(.about-role):not(.about-name) {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.5;
+  max-width: 34rem;
+  margin: 0 0 1.1rem;
+}
+.about-text .pills { justify-content: flex-start; margin-top: clamp(1.5rem, 4vh, 2.5rem); }
+.about-text .pill { margin-bottom: 0; }
+.about-home {
+  display: block;
+  width: min(60vw, 320px);
+  margin: clamp(4rem, 12vh, 7rem) auto 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.about-home img { display: block; width: 100%; }
+
+/* ---------- Newsletter (Substack) ---------- */
+.text-link { border-bottom: 1px solid currentColor; }
+.nl-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: left;
+}
+.nl-kicker {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 0.5rem;
+}
+.nl-name {
+  font-size: clamp(1.5rem, min(3vw, 5vh), 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0 0 1.25rem;
+}
+.nl-desc {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.5;
+  max-width: 32rem;
+  margin: 0 0 2rem;
+}
+.nl-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  max-width: 32rem;
+}
+.nl-form input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem; /* 16px: stops iOS from zooming in on focus */
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 0.6rem 0;
+  outline: none;
+}
+.nl-form input::placeholder { color: inherit; opacity: 0.45; }
+.nl-form input:focus { border-bottom-color: var(--cinnabar-red); }
+.nl-form .pill { margin: 0; font-family: inherit; color: inherit; border-top: 0; border-left: 0; border-right: 0; cursor: pointer; }
+.nl-note { font-size: 0.8rem; opacity: 0.6; margin: 0.75rem 0 1.75rem; }
+.nl-follow { font-size: 0.95rem; font-weight: 500; text-transform: uppercase; border-bottom: 1px solid currentColor; }
+.nl-post { display: block; }
+.nl-post img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1400 / 906;
+  object-fit: cover;
+  mix-blend-mode: multiply; /* the illustration's white background becomes the page ivory */
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.nl-post-meta { display: block; font-size: 0.8rem; opacity: 0.6; margin: 1rem 0 0.4rem; text-transform: uppercase; }
+.nl-post-title { display: block; font-size: clamp(1.15rem, 1.8vw, 1.5rem); font-weight: 500; text-transform: uppercase; margin-bottom: 0.6rem; }
+.nl-post-read { font-size: 0.9rem; border-bottom: 1px solid transparent; }
+@media (hover: hover) {
+  .nl-post:hover .nl-post-read,
+  .nl-follow:hover { color: var(--cinnabar-red); }
+  .nl-post:hover .nl-post-read { border-bottom-color: currentColor; }
+}
+
+/* ---------- FAQ ---------- */
+.faq {
+  max-width: 50rem;
+  margin: 0 auto;
+  text-align: left;
+  border-top: 1px solid var(--ink);
+}
+.faq details { border-bottom: 1px solid var(--ink); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-size: clamp(1.1rem, min(1.8vw, 3vh), 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  flex: none;
+  transition: transform 0.3s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+@media (hover: hover) { .faq summary:hover { color: var(--cinnabar-red); } }
+.faq details p {
+  margin: 0 0 1.25rem;
+  max-width: 40rem;
+  line-height: 1.4;
+  font-size: 1.05rem;
+}
+
+/* Fade-up on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-in-out, transform 1s ease-in-out;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Contact & footer ---------- */
+.contact {
+  min-height: 70vh; /* tall enough for the label to switch to "Contatti" at the end of the page */
+  margin-top: clamp(2.5rem, 7vh, 4rem); /* breathing room before the colour change */
+  background: var(--deep-burgundy);
+  color: var(--soft-ivory);
+}
+.contact-info a { border-bottom: 1px solid transparent; }
+@media (hover: hover) { .contact-info a:hover { border-bottom-color: currentColor; } }
+.pills { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+.contact .pill { background: var(--soft-ivory); color: var(--deep-burgundy); }
+@media (hover: hover) { .contact .pill:hover { background: var(--cinnabar-red); color: var(--soft-ivory); } }
+
+.footer {
+  margin-top: 4rem;
+  padding-bottom: 3rem;
+  font-size: 0.8rem;
+  opacity: 0.75;
+  padding-bottom: max(3rem, env(safe-area-inset-bottom));
+}
+.footer small { font-size: inherit; }
+.footer-logo {
+  display: block;
+  width: min(70vw, 420px);
+  margin: 0 auto 1.5rem;
+  /* the SVG is Deep Ink: turn it ivory on the burgundy background */
+  filter: brightness(0) invert(0.95) sepia(0.15);
+}
+
+
+@media (max-width: 640px) {
+  /* Corsi: a short list, tap a title to open its description (same as the FAQ) */
+  .cards { grid-template-columns: 1fr; gap: 0; border-bottom: 1px solid var(--ink); }
+  .cards h3 { margin: 0; }
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 0;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .card-head::before { display: inline; margin: 0; }
+  .card-head::after {
+    content: "+";
+    margin-left: auto;
+    font-weight: 400;
+    transition: transform 0.3s ease;
+  }
+  .cards article { padding-top: 0; }
+  .cards article.open .card-head::after { transform: rotate(45deg); }
+  .cards article p { display: none; padding: 0 0 1.25rem calc(1.2 * 0.875rem + 1rem); }
+  .cards article.open p { display: block; }
+
+  /* tighter text blocks */
+  .section { padding-top: 4.5rem; padding-bottom: 0.5rem; }
+  .hero { padding-top: 0; }
+  /* sized so "Milano, home-based, piccoli gruppi." always fits on one line (mono: 0.6em per letter) */
+  .hero-text { font-size: min(1.1rem, 4.25vw); line-height: 1.4; text-wrap: pretty; }
+  .liquid-logo { width: clamp(96px, 28vw, 130px); }
+  .body-text { font-size: 0.95rem; line-height: 1.45; margin-bottom: 2rem; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  /* Newsletter on phones: compact, the latest post becomes one quiet row */
+  .nl-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .nl-name { margin-bottom: 0.9rem; }
+  .nl-desc { margin-bottom: 1.5rem; }
+  .nl-note { margin: 0.6rem 0 1rem; }
+  .nl-post {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    column-gap: 1rem;
+    align-items: center;
+    border-top: 1px solid var(--ink);
+    padding-top: 1rem;
+  }
+  .nl-post picture { grid-row: 1 / span 3; }
+  .nl-post img {
+    aspect-ratio: 1;
+    border: 0;
+  }
+  .nl-post-meta { margin: 0 0 0.25rem; font-size: 0.75rem; }
+  .nl-post-title { font-size: 0.95rem; margin: 0 0 0.25rem; }
+  .nl-post-read { font-size: 0.8rem; opacity: 0.7; }
+  .tags li { display: block; }
+  .tags li + li::before { content: none; }
+  .gallery { flex-wrap: wrap; }
+  .gallery img { flex-basis: calc(50% - var(--gap)); }
+  .gallery img:only-child { flex-basis: 100%; }
+  /* an odd photo left alone on its line spans the full width, cropped to landscape */
+  .gallery img:last-child:nth-child(odd):not(:only-child) { flex-basis: 100%; aspect-ratio: 4 / 3; }
+}
+
+/* Desktop / tablet: every section fills at least one screen (phones keep the compact rhythm) */
+@media (min-width: 641px) {
+  .section { min-height: 100vh; }
+  .contact { margin-top: 0; }
+}
+
+/* Touch screens: bigger tap areas (44px), same look */
+@media (pointer: coarse) {
+  .lang-switch { padding-top: 0; gap: 0; align-items: center; }
+  .lang-switch button { padding: 0.9rem 0.5rem; margin: -0.55rem 0; }
+  .lang-switch button:last-child { padding-right: 0; }
+  .pills { gap: 1rem; }
+  .pill { padding: 0.85em 0.9em; }
+  .contact-info { line-height: 1.2; }
+  .contact-info a { display: inline-block; padding: 0.6rem 0.25rem; }
+  .faq summary { padding: 1.1rem 0; }
+  .nl-follow { display: inline-block; padding: 0.6rem 0; border-bottom: 0; text-decoration: underline; text-underline-offset: 4px; }
+}
+
+/* Short screens (phone held sideways): shrink the hero so it fits */
+@media (max-height: 500px) {
+  .hero-intro { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+  .liquid-logo { width: 72px; }
+  .wordmark { margin: 0.75rem auto 1rem; }
+  .wordmark img { width: min(70vw, 560px); }
+  .hero-text { margin-bottom: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .label-track, .reveal { transition: none; }
+  .liquid-logo { transform: none; }
+  .reveal { opacity: 1; transform: none; }
+}
