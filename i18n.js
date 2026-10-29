@@ -2,6 +2,8 @@
 const I18N = {
   it: {
     'label.home': '', // hero: no label, the first name rolls in at Corsi
+    'nav.home': 'Home',
+    'nav.back': 'TORNA ALLA HOME',
     'label.corsi': 'Corsi',
     'label.degustazioni': 'Degustazioni',
     'label.collaborazioni': 'Collaborazioni',
@@ -25,7 +27,7 @@ const I18N = {
 
     'corsi.intro': 'I corsi e la selezione dei vini sono calibrati sulle preferenze ed esigenze dei partecipanti. Prima di iniziare, faremo una breve chiamata per capire le tue esigenze e i tuoi obiettivi.',
     'corsi.teaser': 'Percorsi già pensati o costruiti su misura, in casa a Milano, da 1 a 4 persone.',
-    'corsi.all': 'VEDI TUTTI I CORSI →',
+    'corsi.all': 'VEDI TUTTI I CORSI',
     'corsi.g1': 'Percorsi',
     'corsi.g2': 'Oppure',
     'corsi.sumisura.t': 'Su misura',
@@ -72,9 +74,9 @@ const I18N = {
     'nl.email': 'La tua email',
     'nl.subscribe': 'ISCRIVITI',
     'nl.note': 'Gratuita. Ti porta su Substack per confermare.',
-    'nl.follow': 'Segui Chiara su Substack →',
+    'nl.follow': 'Segui Chiara su Substack',
     'nl.latest': 'Ultimo articolo · 17 settembre 2026',
-    'nl.read': 'Leggi su Substack →',
+    'nl.read': 'Leggi su Substack',
 
     'faq.q1': 'Devo sapere già qualcosa di vino?',
     'faq.a1': 'Dipende dal corso. Il corso base è pensato per chi non ne sa niente; i focus su bollicine e su vini dolci e fortificati richiedono un’infarinatura dei fondamentali. Se hai dubbi, decidiamo insieme se hai un livello adeguato.',
@@ -104,6 +106,8 @@ const I18N = {
   },
   en: {
     'label.home': '', // hero: no label, the first name rolls in at Corsi
+    'nav.home': 'Home',
+    'nav.back': 'BACK TO HOME',
     'label.corsi': 'Courses',
     'label.degustazioni': 'Tastings',
     'label.collaborazioni': 'Partnerships',
@@ -127,7 +131,7 @@ const I18N = {
 
     'corsi.intro': 'Courses and the choice of wines are tailored to the tastes and needs of the people taking part. Before we start, we’ll have a short call to understand what you need and what you want to get out of it.',
     'corsi.teaser': 'Ready-made or tailored courses, at home in Milan, for 1 to 4 people.',
-    'corsi.all': 'SEE ALL COURSES →',
+    'corsi.all': 'SEE ALL COURSES',
     'corsi.g1': 'Courses',
     'corsi.g2': 'Or',
     'corsi.sumisura.t': 'Tailored',
@@ -174,9 +178,9 @@ const I18N = {
     'nl.email': 'Your email',
     'nl.subscribe': 'SUBSCRIBE',
     'nl.note': 'Free. Takes you to Substack to confirm.',
-    'nl.follow': 'Follow Chiara on Substack →',
+    'nl.follow': 'Follow Chiara on Substack',
     'nl.latest': 'Latest post · 17 September 2026',
-    'nl.read': 'Read on Substack →',
+    'nl.read': 'Read on Substack',
 
     'faq.q1': 'Do I need to know anything about wine?',
     'faq.a1': 'It depends on the course. The introduction is designed for complete beginners; the focus courses on sparkling and on sweet and fortified wines need a grounding in the fundamentals. If you’re unsure, we’ll decide together whether your level is right.',
