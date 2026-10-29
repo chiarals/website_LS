@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F3EEE4">
+  <title>Corsi — La Sputacchiera</title>
+  <meta name="description" content="Corsi sul vino a Milano: corso base, focus bollicine, focus vini dolci e fortificati, percorsi su misura e da regalare.">
+  <link rel="icon" type="image/png" href="assets/logo-liquido.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="index.html" class="section-label" aria-live="polite">
+      <span class="label-track"></span>
+    </a>
+    <div class="lang-switch" role="group" aria-label="Lingua / Language">
+      <button type="button" data-lang="it">IT</button><span aria-hidden="true">/</span><button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- first screen: logo and intro; the label stays empty until the courses scroll in -->
+    <section class="section page-intro" data-label="label.home">
+      <img class="liquid-logo page-logo" src="assets/logo-liquido.png" alt="">
+      <p class="body-text page-intro-text" data-i18n="corsi.intro"></p>
+    </section>
+
+    <section id="corsi-dettagli" class="section corsi-page" data-label="label.corsi">
+      <h1 class="visually-hidden" data-i18n="label.corsi"></h1>
+      <p class="course-meta reveal">
+        <span><b data-i18n="corsi.k.quando"></b> <span data-i18n="corsi.quando"></span></span>
+        <span><b data-i18n="corsi.k.dove"></b> <span data-i18n="corsi.dove"></span></span>
+        <span><b data-i18n="corsi.k.partecipanti"></b> <span data-i18n="corsi.partecipanti"></span></span>
+      </p>
+      <p class="cards-kicker reveal" data-i18n="corsi.g1"></p>
+      <div class="cards cards-full reveal">
+        <article id="percorso-1">
+          <h3 class="card-head"><span data-i18n="corsi.c1.t"></span></h3>
+          <div class="card-body">
+            <p class="lead"><span data-i18n="corsi.c1.lead"></span> <span data-i18n="corsi.c1.more"></span></p>
+            <dl class="specs">
+              <div><dt data-i18n="corsi.k.durata"></dt><dd data-i18n="corsi.c1.dur"></dd></div>
+              <div><dt data-i18n="corsi.k.sessioni"></dt><dd data-i18n="corsi.c1.ses"></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article id="percorso-2">
+          <h3 class="card-head"><span data-i18n="corsi.c2.t"></span></h3>
+          <div class="card-body">
+            <p class="lead"><span data-i18n="corsi.c2.lead"></span> <span data-i18n="corsi.c2.more"></span></p>
+            <dl class="specs">
+              <div><dt data-i18n="corsi.k.durata"></dt><dd data-i18n="corsi.c2.dur"></dd></div>
+              <div><dt data-i18n="corsi.k.sessioni"></dt><dd data-i18n="corsi.c2.ses"></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article id="percorso-3">
+          <h3 class="card-head"><span data-i18n="corsi.c3.t"></span></h3>
+          <div class="card-body">
+            <p class="lead"><span data-i18n="corsi.c3.lead"></span> <span data-i18n="corsi.c3.more"></span></p>
+            <dl class="specs">
+              <div><dt data-i18n="corsi.k.durata"></dt><dd data-i18n="corsi.c3.dur"></dd></div>
+              <div><dt data-i18n="corsi.k.sessioni"></dt><dd data-i18n="corsi.c3.ses"></dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+      <p class="cards-kicker reveal" data-i18n="corsi.g2"></p>
+      <div class="cards cards-full cards-extra reveal">
+        <article id="percorso-4">
+          <h3 class="card-head"><span data-i18n="corsi.sumisura.t"></span></h3>
+          <div class="card-body">
+            <p class="lead" data-i18n="corsi.sumisura.d"></p>
+          </div>
+        </article>
+        <article id="percorso-5">
+          <h3 class="card-head"><span data-i18n="corsi.regalo.t"></span></h3>
+          <div class="card-body">
+            <p class="lead" data-i18n="corsi.regalo.d"></p>
+          </div>
+        </article>
+      </div>
+      <p class="course-notes reveal"><span data-i18n="corsi.n1"></span> <span data-i18n="corsi.n2"></span></p>
+      <div class="pills reveal">
+        <a class="pill" href="mailto:chiara.asselta@gmail.com" data-i18n="contact.write"></a>
+        <a class="pill" href="https://wa.me/393386965363" target="_blank" rel="noopener">WHATSAPP</a>
+      </div>
+      <a class="about-home" href="index.html"><img src="assets/logo.svg" alt="La Sputacchiera"></a>
+    </section>
+  </main>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

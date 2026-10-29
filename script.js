@@ -60,7 +60,7 @@ document.querySelectorAll('.gallery').forEach((g) => {
 
 // Corsi on phones: tap a course title to open/close its description.
 const narrow = matchMedia('(max-width: 640px)');
-const courseCards = [...document.querySelectorAll('.cards article')];
+const courseCards = [...document.querySelectorAll('.cards:not(.cards-full) article')];
 function syncCourses() {
   courseCards.forEach((c) => {
     const btn = c.querySelector('.card-head');
@@ -78,6 +78,15 @@ courseCards.forEach((c) => c.querySelector('.card-head').addEventListener('click
   c.classList.toggle('open');
   syncCourses();
 }));
+// Desktop: "Leggi tutto" opens the rest of a course description.
+courseCards.forEach((c) => {
+  const more = c.querySelector('.more-toggle');
+  if (!more) return; // "Su misura" and "Da regalare" are short, no toggle
+  more.addEventListener('click', () => {
+    const open = c.classList.toggle('more-open');
+    more.setAttribute('aria-expanded', open);
+  });
+});
 narrow.addEventListener('change', syncCourses);
 syncCourses();
 

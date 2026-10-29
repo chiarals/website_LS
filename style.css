@@ -138,7 +138,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-text {
   font-size: clamp(1.1rem, min(2vw, 3.2vh), 1.75rem);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0;
   max-width: 60rem;
@@ -201,9 +201,8 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(1.5rem, 3vw, 3rem);
   max-width: 72rem;
-  margin: 0 auto clamp(2.5rem, 7vh, 4rem);
+  margin: 0 auto clamp(2rem, 5vh, 3rem);
   text-align: left;
-  counter-reset: card;
 }
 .cards article {
   border-top: 1px solid var(--ink);
@@ -239,6 +238,130 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
 }
 .cards p { margin: 0; line-height: 1.45; font-size: 0.95rem; }
+
+/* label / value pairs: Durata, Sessioni, Quando, Dove, Partecipanti */
+.specs { margin: 0; }
+.specs { margin-top: 1.25rem; border-top: 1px solid rgba(32, 36, 42, 0.2); }
+/* desktop: details line up across the columns whatever the description length */
+/* the rest of each description waits behind "Leggi tutto" */
+/* inline "leggi tutto": the text simply continues, the link sits at its end */
+.more-toggle {
+  font: inherit;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.more-toggle .when-open,
+.cards article.more-open .more-toggle .when-closed { display: none; }
+.cards article.more-open .more-toggle .when-open { display: inline; }
+.cards .more { display: none; }
+.cards article.more-open .more { display: inline; }
+@media (hover: hover) { .more-toggle:hover { color: var(--cinnabar-red); opacity: 1; } }
+
+@media (min-width: 641px) {
+  /* title, text and details each share one row across the three columns, so they stay aligned */
+  .cards article { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  .cards-extra article { grid-row: span 2; }
+  .cards-extra .card-body .lead { grid-row: 2; }
+  .card-body { display: contents; }
+  /* order: title, duration/sessions, then the text, which is last so opening it moves nothing else */
+  .cards h3 { grid-row: 1; }
+  .card-body .specs { grid-row: 2; }
+  .card-body .lead { grid-row: 3; margin: 0; }
+  /* duration and sessions on one quiet line, no table rules */
+  .card-body .specs { border: 0; margin: 0 0 0.9rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; align-self: start; }
+  .card-body .specs div { display: block; border: 0; padding: 0; font-size: 0.85rem; line-height: 1.45; }
+  .card-body .specs dt { color: var(--cinnabar-red); opacity: 1 !important; font-weight: 500; display: inline; margin-right: 0.5rem; }
+  .card-body .specs dd { font-weight: 500; display: inline; }
+}
+.specs div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; padding: 0.5rem 0; }
+.specs div { border-bottom: 1px solid rgba(32, 36, 42, 0.2); font-size: 0.9rem; }
+.specs dt { color: var(--cinnabar-red); opacity: 1 !important; font-weight: 500; text-transform: uppercase; font-size: 0.8rem; opacity: 0.6; padding-top: 0.1em; }
+.specs dd { font-weight: 500; margin: 0; line-height: 1.4; }
+
+.corsi-page { counter-reset: card; }
+/* liquid logo at the top of inner pages: same scroll spin as the homepage hero */
+.page-intro {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+.page-intro { flex-direction: column; padding-left: var(--margin) !important; padding-right: var(--margin) !important; }
+.page-logo { width: clamp(130px, min(16vw, 24vh), 220px); margin: 0 0 clamp(2rem, 6vh, 3.5rem); }
+.page-intro-text { margin-bottom: 0; }
+.corsi-page .cards article { scroll-margin-top: 6rem; } /* links from the homepage land below the label */
+
+/* homepage: just the course names, each pointing to the courses page */
+.course-list {
+  list-style: none;
+  padding: 0;
+  max-width: 40rem;
+  margin: 0 auto 2rem;
+  text-align: left;
+  border-top: 1px solid var(--ink);
+}
+.course-list li { border-bottom: 1px solid var(--ink); }
+.course-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.course-num { font-size: 0.8rem; font-weight: 400; opacity: 0.6; }
+.course-arrow { margin-left: auto; font-weight: 400; opacity: 0.5; transition: transform 0.25s ease; }
+@media (hover: hover) {
+  .course-list a:hover { color: var(--cinnabar-red); }
+  .course-list a:hover .course-arrow { opacity: 1; transform: translateX(4px); }
+}
+/* small group labels: "Percorsi" / "Oppure" */
+.cards-kicker {
+  max-width: 72rem;
+  margin: 0 auto 0.6rem;
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* shared details (Quando / Dove / Partecipanti): a small framed strip, labels in the accent colour */
+.course-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem clamp(1.5rem, 3vw, 3rem);
+  max-width: 72rem;
+  margin: 0 auto clamp(2.5rem, 6vh, 3.5rem);
+  padding: 0.25rem 0;
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.course-meta > span { display: flex; flex-direction: column; gap: 0.3rem; }
+.course-meta b { font-weight: 500; font-size: 0.8rem; text-transform: uppercase; color: var(--cinnabar-red); }
+.course-meta b + span { font-weight: 500; }
+
+/* notes: one short line under the courses */
+.course-notes {
+  max-width: 72rem;
+  margin: 0 auto clamp(2.5rem, 7vh, 4rem);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.7;
+  text-wrap: balance;
+}
 
 /* ---------- Collaborazioni: one line of capitals, slash-separated ---------- */
 .tags {
@@ -364,7 +487,6 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   aspect-ratio: 1400 / 906;
   object-fit: cover;
-  mix-blend-mode: multiply; /* the illustration's white background becomes the page ivory */
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
@@ -452,6 +574,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   /* Corsi: a short list, tap a title to open its description (same as the FAQ) */
   .cards { grid-template-columns: 1fr; gap: 0; border-bottom: 1px solid var(--ink); }
+  .cards-kicker { margin-bottom: 0.4rem; }
   .cards h3 { margin: 0; }
   .card-head {
     display: flex;
@@ -470,15 +593,39 @@ a { color: inherit; text-decoration: none; }
   }
   .cards article { padding-top: 0; }
   .cards article.open .card-head::after { transform: rotate(45deg); }
-  .cards article p { display: none; padding: 0 0 1.25rem calc(1.2 * 0.875rem + 1rem); }
-  .cards article.open p { display: block; }
+  .cards .card-body { display: none; padding: 0 0 1.25rem calc(1.2 * 0.875rem + 1rem); }
+  .cards article.open .card-body { display: flex; flex-direction: column; }
+  /* phones: tapping the title already opens everything, so the full text shows straight away */
+  .cards .more { display: inline; }
+  .more-toggle { display: none; }
+  .cards-full .card-body { display: flex; flex-direction: column; }
+  .cards-full .card-head { cursor: default; pointer-events: none; }
+  .cards-full .card-head::after { content: none; }
+  .course-meta { grid-template-columns: 1fr; gap: 0; padding: 0; }
+  .course-meta > span { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; flex-direction: row; padding: 0.7rem 0; }
+  .course-meta > span + span { border-top: 1px solid rgba(32, 36, 42, 0.2); }
+  .course-meta b { padding-top: 0.15em; }
+  .specs div { grid-template-columns: 6.5rem 1fr; }
+  .card-head { align-items: flex-start; }
+  .card-head span { flex: 1; }
 
   /* tighter text blocks */
-  .section { padding-top: 4.5rem; padding-bottom: 0.5rem; }
+  /* phones: text sits 20px from the screen edges; photos stay (almost) edge to edge */
+  :root { --pad: 1.25rem; }
+  .section {
+    padding: 5.5rem max(var(--pad), env(safe-area-inset-right)) 2rem max(var(--pad), env(safe-area-inset-left));
+  }
+  .topbar {
+    padding-left: max(var(--pad), env(safe-area-inset-left));
+    padding-right: max(var(--pad), env(safe-area-inset-right));
+  }
+  .section .gallery { margin-left: calc(var(--margin) - var(--pad)); margin-right: calc(var(--margin) - var(--pad)); }
   .hero { padding-top: 0; }
   /* sized so "Milano, home-based, piccoli gruppi." always fits on one line (mono: 0.6em per letter) */
-  .hero-text { font-size: min(1.1rem, 4.25vw); line-height: 1.4; text-wrap: pretty; }
+  .hero-text { font-size: min(1.1rem, 4.05vw); line-height: 1.4; text-wrap: pretty; }
   .liquid-logo { width: clamp(96px, 28vw, 130px); }
+  .page-logo { width: clamp(130px, 40vw, 170px); }
+  .page-intro { padding-left: var(--pad) !important; padding-right: var(--pad) !important; }
   .body-text { font-size: 0.95rem; line-height: 1.45; margin-bottom: 2rem; }
 
   .about-grid { grid-template-columns: 1fr; }
