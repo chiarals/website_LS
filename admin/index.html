@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#F3EEE4">
+  <title>Area riservata — La Sputacchiera</title>
+  <link rel="icon" type="image/png" href="../assets/logo-liquido.png">
+  <link rel="preload" href="../assets/fonts/roboto-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body data-view="edit">
+  <main id="gate" class="gate" hidden></main>
+
+  <div id="app" class="app" hidden>
+    <header class="bar">
+      <div class="brand"><img src="../assets/logo-liquido.png" alt=""><span>Area riservata</span><small id="mode"></small></div>
+      <p id="status" class="status" role="status"></p>
+      <div class="actions">
+        <button id="undo" type="button" class="ghost">Annulla modifiche</button>
+        <button id="save" type="button" class="primary">Salva bozza</button>
+        <span class="sep" aria-hidden="true"></span>
+        <a id="site-preview" href="../index.html?anteprima" class="button ghost" target="_blank" rel="noopener">Guarda l’anteprima del sito</a>
+        <button id="publish" type="button" class="accent">Pubblica</button>
+        <details class="more">
+          <summary>Altro</summary>
+          <div class="menu">
+            <button id="discard" type="button">Scarta la bozza</button>
+            <button id="versions" type="button">Versioni pubblicate</button>
+            <button id="password" type="button">Cambia password</button>
+            <a href="../index.html" target="_blank" rel="noopener">Apri il sito pubblicato</a>
+            <button id="logout" type="button">Esci</button>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <nav id="views" class="views" aria-label="Vista">
+      <button type="button" data-view="edit">Modifica</button>
+      <button type="button" data-view="preview">Anteprima</button>
+    </nav>
+
+    <div class="work">
+      <section class="side" aria-label="Contenuti">
+        <nav id="groups" class="groups" aria-label="Sezioni del sito"></nav>
+        <p class="tip">Clicca un testo o una foto nell’anteprima per modificarlo. Per un link scrivi [testo](indirizzo). Se lasci vuoto l’inglese, il sito mostra l’italiano.</p>
+        <div id="editor" class="editor"></div>
+      </section>
+
+      <section class="view" aria-label="Anteprima delle modifiche">
+        <div class="view-bar">
+          <div id="pages" class="seg"></div>
+          <div id="devices" class="seg">
+            <button type="button" data-device="desktop">Computer</button>
+            <button type="button" data-device="phone">Telefono</button>
+          </div>
+        </div>
+        <div id="stage" class="stage"><iframe id="frame" title="Anteprima del sito con le modifiche"></iframe></div>
+      </section>
+    </div>
+  </div>
+
+  <div id="notices" class="notices" aria-live="polite"></div>
+  <div class="busy-veil"><span id="busy-label"></span></div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

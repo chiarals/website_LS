@@ -744,3 +744,30 @@ html[lang="it"] [data-only="en"], html[lang="en"] [data-only="it"] { display: no
   .liquid-logo { transform: none; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- Content loading: English (or a draft) waits for its texts instead of flashing Italian ---------- */
+.content-pending main { opacity: 0; }
+main { transition: opacity 0.2s; }
+.gallery:not(:has(img)) { display: none; }
+
+/* ---------- Draft preview from the reserved area: always visible, never mistaken for the live site ---------- */
+.preview-banner {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 1rem;
+  padding: 0.7rem 1rem;
+  padding-bottom: max(0.7rem, env(safe-area-inset-bottom));
+  background: var(--deep-burgundy);
+  color: var(--soft-ivory);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  text-align: center;
+}
+.preview-banner b { font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--powder-pink); }
+.preview-banner a { border-bottom: 1px solid currentColor; }
+.has-preview-banner body { padding-bottom: 4rem; }

@@ -31,7 +31,10 @@ const POSTHOG_HOST = 'https://eu.i.posthog.com';
     }
   }
 
-  if (!POSTHOG_KEY || local || ownerOptedOut()) return;
+  // Draft previews from the reserved area are not real visits.
+  const preview = /[?&]anteprima/.test(location.search);
+
+  if (!POSTHOG_KEY || local || preview || ownerOptedOut()) return;
 
   // PostHog's official loader: queues calls until the library arrives.
   /* eslint-disable */

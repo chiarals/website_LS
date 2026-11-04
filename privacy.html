@@ -11,6 +11,9 @@
   <link rel="icon" type="image/png" href="assets/logo-liquido.png">
   <link rel="preload" href="assets/fonts/roboto-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
+  <!--render:version--><meta name="content-version" content="kg07ea">
+  <link rel="preload" href="content/live.json?v=kg07ea" as="fetch" crossorigin><!--/render:version-->
+  <script>try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||location.search.indexOf('anteprima')>-1)document.documentElement.classList.add('content-pending')}catch(e){}</script>
 </head>
 <body>
 
@@ -108,8 +111,7 @@
     </section>
   </main>
 
-  <script src="i18n.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
   <script src="analytics.js"></script>
 </body>
 </html>
