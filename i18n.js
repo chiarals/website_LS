@@ -10,6 +10,7 @@ const I18N = {
     'label.newsletter': 'Newsletter',
     'label.faq': 'FAQ',
     'label.contatti': 'Contatti',
+    'label.privacy': 'Privacy',
 
     'hero.text': 'Corsi sul vino personalizzati e degustazioni su regioni meno conosciute.<br>Milano, home-based, piccoli gruppi.<br><a class="text-link" href="#newsletter">Newsletter</a> senza tecnicismi e community WhatsApp.',
     'hero.cta': 'SCOPRI I CORSI',
@@ -73,7 +74,7 @@ const I18N = {
     'nl.desc': 'Riflessioni, storie e approfondimenti scaturiti dal mondo del vino e dell’alcol. Senza tecnicismi e note di degustazione. Esce senza cadenza fissa, quando ho qualcosa da dire.',
     'nl.email': 'La tua email',
     'nl.subscribe': 'ISCRIVITI',
-    'nl.note': 'Gratuita. Ti porta su Substack per confermare.',
+    'nl.note': 'Gratuita. Ti porta su Substack per confermare. <a class="text-link" href="privacy.html">Privacy</a>',
     'nl.follow': 'Segui Chiara su Substack',
     'nl.latest': 'Ultimo articolo · 17 settembre 2026',
     'nl.read': 'Leggi su Substack',
@@ -91,6 +92,7 @@ const I18N = {
 
     'contact.write': 'SCRIVICI',
     'footer.place': 'Milano',
+    'footer.privacy': 'Privacy e cookie',
 
     'alt.tavolata': 'Degustazione in terrazza',
     'alt.tavolata2': 'Tavolata in terrazza al tramonto',
@@ -114,6 +116,7 @@ const I18N = {
     'label.newsletter': 'Newsletter',
     'label.faq': 'FAQ',
     'label.contatti': 'Contact',
+    'label.privacy': 'Privacy',
 
     'hero.text': 'Tailored wine courses and tastings from lesser-known regions.<br>Milan, home-based, small groups.<br>A jargon-free <a class="text-link" href="#newsletter">newsletter</a> and a WhatsApp community.',
     'hero.cta': 'SEE THE COURSES',
@@ -177,7 +180,7 @@ const I18N = {
     'nl.desc': 'Thoughts, stories and deep dives from the world of wine and spirits. No jargon, no tasting notes. It comes out whenever there is something worth saying. Written in Italian.',
     'nl.email': 'Your email',
     'nl.subscribe': 'SUBSCRIBE',
-    'nl.note': 'Free. Takes you to Substack to confirm.',
+    'nl.note': 'Free. Takes you to Substack to confirm. <a class="text-link" href="privacy.html">Privacy</a>',
     'nl.follow': 'Follow Chiara on Substack',
     'nl.latest': 'Latest post · 17 September 2026',
     'nl.read': 'Read on Substack',
@@ -195,6 +198,7 @@ const I18N = {
 
     'contact.write': 'EMAIL US',
     'footer.place': 'Milan',
+    'footer.privacy': 'Privacy and cookies',
 
     'alt.tavolata': 'Tasting on the terrace',
     'alt.tavolata2': 'Long table on the terrace at sunset',

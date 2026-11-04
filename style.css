@@ -1,3 +1,9 @@
+/* Roboto Mono, served from our own domain: no visitor IP goes to Google Fonts. */
+@font-face { font-family: 'Roboto Mono'; font-style: normal; font-weight: 400 600; font-display: swap; src: url(assets/fonts/roboto-mono-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Roboto Mono'; font-style: normal; font-weight: 400 600; font-display: swap; src: url(assets/fonts/roboto-mono-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Roboto Mono'; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/roboto-mono-italic-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Roboto Mono'; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/roboto-mono-italic-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 :root {
   /* La Sputacchiera palette (from "LaSputacchiera Palette.pdf") */
   --warm-sand: #DCC8A8;
@@ -435,6 +441,36 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: env(safe-area-inset-bottom);
 }
 .about-home img { display: block; width: 100%; }
+
+/* ---------- Privacy page: one language shown at a time, follows the IT/EN switch ---------- */
+html[lang="it"] [data-only="en"], html[lang="en"] [data-only="it"] { display: none; }
+.legal-text { max-width: 44rem; margin: 0 auto clamp(2rem, 6vh, 3.5rem); text-align: left; }
+.legal-text h1 {
+  font-size: clamp(1.5rem, min(3vw, 5vh), 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0 0 0.75rem;
+}
+.legal-updated { font-size: 0.8rem; text-transform: uppercase; opacity: 0.6; margin: 0 0 2rem; }
+.legal-text h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--cinnabar-red);
+  margin: 2.25rem 0 0.75rem;
+}
+.legal-text p, .legal-text li { font-size: clamp(0.95rem, 1.2vw, 1.05rem); line-height: 1.55; margin: 0 0 1rem; }
+.legal-text ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+.legal-text li { margin-bottom: 0.4rem; }
+.legal-text b { font-weight: 500; }
+.legal-text a { overflow-wrap: anywhere; }
+
+/* Privacy link under the closing logo of Corsi and Chi sono (the home has it in the footer) */
+.legal-link { display: block; width: fit-content; margin: 1.5rem auto 0; font-size: 0.8rem; opacity: 0.6; padding-bottom: env(safe-area-inset-bottom); }
+@media (hover: hover) { .legal-link:hover { opacity: 1; } }
+.footer .legal-link { margin-top: 0.75rem; padding-bottom: 0; color: inherit; }
 
 /* ---------- Newsletter (Substack) ---------- */
 .text-link { border-bottom: 1px solid currentColor; }

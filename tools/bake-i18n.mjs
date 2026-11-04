@@ -12,7 +12,7 @@ const t = ctx.I18N.it;
 
 const attr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-for (const page of ['index.html', 'corsi.html', 'chi-sono.html']) {
+for (const page of ['index.html', 'corsi.html', 'chi-sono.html', 'privacy.html']) {
   const file = path.join(root, page);
   let html = fs.readFileSync(file, 'utf8');
   let count = 0;
