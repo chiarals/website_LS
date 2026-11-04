@@ -155,6 +155,7 @@ function showLogin(box) {
         form.classList.remove('working');
         return showSetup('expired');
       }
+      if (box.temporary) return showOwnPassword();
       try { sessionStorage.setItem('ls-admin', token); } catch (x) {}
       openEditor();
     },
@@ -162,6 +163,40 @@ function showLogin(box) {
   h('label', { for: 'pw', text: 'Password' }), pw, err,
   h('button', { class: 'primary', type: 'submit' }, 'Entra'));
   screen(h('h1', { text: 'Area riservata' }), form);
+  pw.focus();
+}
+
+// First entry with the temporary password: Chiara picks her own before anything else.
+function showOwnPassword() {
+  const pw = h('input', { type: 'password', id: 'npw', autocomplete: 'new-password', required: true });
+  const pw2 = h('input', { type: 'password', id: 'npw2', autocomplete: 'new-password', required: true });
+  const err = h('p', { class: 'gate-error', role: 'alert' });
+  const form = h('form', {
+    onsubmit: async (e) => {
+      e.preventDefault();
+      err.textContent = '';
+      if (pw.value.length < 12) { err.textContent = 'Almeno 12 caratteri: una frase breve va benissimo, per esempio “il sancerre di zia lina”.'; return; }
+      if (pw.value !== pw2.value) { err.textContent = 'Le due password non coincidono.'; return; }
+      form.classList.add('working');
+      try {
+        await store.commit({ 'admin/key.json': json(await lock(token, pw.value)) }, 'Area riservata: password scelta da Chiara');
+      } catch (x) {
+        form.classList.remove('working');
+        err.textContent = 'La password non si è salvata. Riprova tra poco.';
+        return;
+      }
+      try { sessionStorage.setItem('ls-admin', token); } catch (x) {}
+      openEditor();
+      notice('Fatto: da ora si entra con la tua password. Quella temporanea non vale più.');
+    },
+  },
+  h('label', { for: 'npw', text: 'La tua password' }), pw,
+  h('label', { for: 'npw2', text: 'Ripetila' }), pw2,
+  err,
+  h('button', { class: 'primary', type: 'submit' }, 'Salva e entra'));
+  screen(h('h1', { text: 'Benvenuta' }),
+    h('p', { class: 'gate-intro', text: 'Sei entrata con una password temporanea. Scegline una tua: servirà ogni volta che entri nell’area riservata. Non la conosce nessun altro, quindi annotala in un posto sicuro.' }),
+    form);
   pw.focus();
 }
 

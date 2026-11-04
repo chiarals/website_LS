@@ -14,7 +14,8 @@ In "Altro" → **Versioni pubblicate** si ricarica una versione precedente.
   Ogni salvataggio è un commit: la cronologia del repo è anche il backup.
 - La password sblocca una chiave GitHub cifrata in `admin/key.json` (fine-grained, solo
   questo repo, *Contents: Read and write*). La prima configurazione, una nuova chiave quando
-  scade e il cambio password si fanno dall'area stessa; in alternativa `node tools/admin-key.mjs`.
+  scade e il cambio password si fanno dall'area stessa; in alternativa `node tools/admin-key.mjs`
+  (`--temporanea` genera una password temporanea: al primo accesso Chiara ne sceglie una sua).
 - Le foto caricate finiscono in `assets/foto/uploads/` (JPEG, max 2000px).
 
 ## Sviluppo
