@@ -11,6 +11,8 @@ const langButtons = [...document.querySelectorAll('.lang-switch button')];
 const params = new URLSearchParams(location.search);
 const MODE = !params.has('anteprima') ? 'live' : params.get('anteprima') === 'editor' ? 'editor' : 'preview';
 const LOCAL = /^(localhost|127\.)/.test(location.hostname);
+// Inside the phone frame of the reserved area (admin/telefono.html): the frame has its own banner.
+const FRAMED = params.has('incornice');
 let content = null;
 
 async function fetchJson(url, init) {
@@ -191,7 +193,7 @@ if (liquid && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 function keepPreviewLinks() {
   document.querySelectorAll('a[href]').forEach((a) => {
     const m = a.getAttribute('href').match(/^((?:index|corsi|chi-sono|privacy)\.html)(#.*)?$/);
-    if (m) a.setAttribute('href', `${m[1]}?anteprima${m[2] || ''}`);
+    if (m) a.setAttribute('href', `${m[1]}?anteprima${FRAMED ? '&incornice' : ''}${m[2] || ''}`);
   });
   if (LOCAL) return;
   const raw = `https://raw.githubusercontent.com/${REPO.owner}/${REPO.repo}/${REPO.branch}/`;
@@ -200,12 +202,15 @@ function keepPreviewLinks() {
 }
 
 function showBanner(hasDraft) {
+  if (FRAMED) return;
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const phone = `<a class="preview-phone" href="admin/telefono.html?pagina=${encodeURIComponent(page + location.hash)}">Vedi come su telefono</a>`;
   const bar = document.createElement('div');
   bar.className = 'preview-banner';
   bar.setAttribute('role', 'status');
   bar.innerHTML = hasDraft
-    ? '<b>Anteprima</b><span>Questa è la bozza salvata, non il sito pubblicato.</span><a href="admin/">Torna all’area riservata</a>'
-    : '<b>Anteprima</b><span>Non c’è nessuna bozza salvata: stai vedendo il sito pubblicato.</span><a href="admin/">Torna all’area riservata</a>';
+    ? `<b>Anteprima</b><span>Questa è la bozza salvata, non il sito pubblicato.</span>${phone}<a href="admin/">Torna all’area riservata</a>`
+    : `<b>Anteprima</b><span>Non c’è nessuna bozza salvata: stai vedendo il sito pubblicato.</span>${phone}<a href="admin/">Torna all’area riservata</a>`;
   document.body.appendChild(bar);
   document.documentElement.classList.add('has-preview-banner');
 }

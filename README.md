@@ -6,7 +6,8 @@ Sito di La Sputacchiera: https://lasputacchiera.com (GitHub Pages, dal branch `m
 
 Chiara modifica testi (IT/EN), foto, corsi e domande frequenti senza toccare il codice:
 modifica con l'anteprima a fianco → **Salva bozza** → **Guarda l'anteprima del sito**
-(il sito vero con la barra "Anteprima") → **Pubblica** oppure **Scarta la bozza**.
+(il sito vero con la barra "Anteprima"; da lì **Vedi come su telefono** lo mostra in una
+cornice da telefono, `admin/telefono.html`) → **Pubblica** oppure **Scarta la bozza**.
 In "Altro" → **Versioni pubblicate** si ricarica una versione precedente.
 
 - I contenuti stanno in `content/live.json` (pubblicato) e `content/draft.json` (bozza, se c'è).

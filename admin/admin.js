@@ -336,9 +336,9 @@ async function discard() {
 }
 
 // The site preview shows the saved draft: offer to save what is still on screen first.
-async function openSitePreview(e) {
+async function openSitePreview(e, phone = false) {
   e.preventDefault();
-  const url = new URL(`../${previewPage}?anteprima`, location.href).href;
+  const url = new URL(phone ? `telefono.html?pagina=${previewPage}` : `../${previewPage}?anteprima`, location.href).href;
   if (!same(working, saved)) {
     const choice = await dialog({
       title: 'Ci sono modifiche non salvate',
@@ -687,6 +687,7 @@ $('#undo').addEventListener('click', undo);
 $('#publish').addEventListener('click', publish);
 $('#discard').addEventListener('click', discard);
 $('#site-preview').addEventListener('click', openSitePreview);
+$('#phone-preview').addEventListener('click', (e) => { e.target.closest('details').open = false; openSitePreview(e, true); });
 $('#versions').addEventListener('click', showVersions);
 $('#password').addEventListener('click', changePassword);
 $('#logout').addEventListener('click', logout);

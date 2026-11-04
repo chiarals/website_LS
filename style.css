@@ -771,3 +771,5 @@ main { transition: opacity 0.2s; }
 .preview-banner b { font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--powder-pink); }
 .preview-banner a { border-bottom: 1px solid currentColor; }
 .has-preview-banner body { padding-bottom: 4rem; }
+/* on a real phone the page already is the phone view */
+@media (max-width: 640px) { .preview-phone { display: none; } }
