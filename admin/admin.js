@@ -493,7 +493,7 @@ function coursesEditor(item) {
         const id = `c${Date.now().toString(36)}`;
         list.push({ id, it: { ...blank, t: 'Nuovo corso' }, en: { ...blank } });
         rerender();
-        focusKey(`course.${id}.t`);
+        focusKey(`course.${id}.t`, { select: true });
       },
     }, icon('plus'), 'Aggiungi un corso'));
 }
@@ -558,7 +558,7 @@ function faqEditor() {
         langPair(null, (l) => q[l]?.q, (l, v) => { q[l] = q[l] || {}; q[l].q = v; })),
       h('div', { class: 'subfield', 'data-key': `faq.${i}.a` }, h('div', { class: 'field-label small', text: 'Risposta' }),
         langPair(null, (l) => q[l]?.a, (l, v) => { q[l] = q[l] || {}; q[l].a = v; }, { long: true })))),
-    h('button', { type: 'button', class: 'add', onclick: () => { list.push({ it: { q: 'Nuova domanda', a: '' }, en: { q: '', a: '' } }); rerender(); focusKey(`faq.${list.length - 1}.q`); } }, icon('plus'), 'Aggiungi una domanda'));
+    h('button', { type: 'button', class: 'add', onclick: () => { list.push({ it: { q: 'Nuova domanda', a: '' }, en: { q: '', a: '' } }); rerender(); focusKey(`faq.${list.length - 1}.q`, { select: true }); } }, icon('plus'), 'Aggiungi una domanda'));
 }
 
 function itemEditor(item) {
@@ -581,14 +581,15 @@ function openGroup(id, { keepScroll = false } = {}) {
   const panel = $('#editor');
   const scroll = panel.scrollTop;
   document.querySelectorAll('#groups button').forEach((b) => b.setAttribute('aria-current', b.dataset.group === id ? 'true' : 'false'));
-  panel.replaceChildren(
+  panel.replaceChildren(...[
     h('h2', { class: 'group-title', text: g.title }),
     g.hint && h('p', { class: 'field-hint', text: g.hint }),
     ...g.items.map((item) => {
       const el = itemEditor(item);
       if (el && (item.page || g.page)) el.addEventListener('focusin', () => showPage(item.page || g.page));
       return el;
-    }));
+    }),
+  ].filter(Boolean));
   panel.querySelectorAll('textarea').forEach(autosize);
   if (keepScroll) panel.scrollTop = scroll;
   else { panel.scrollTop = 0; showPage(g.page); }
@@ -604,7 +605,7 @@ function groupOf(key) {
   return GROUPS.find((g) => g.items.some((it) => it.key === key || (gallery && it.gallery === gallery[1])))?.id;
 }
 
-function focusKey(key) {
+function focusKey(key, { select = false } = {}) {
   const id = groupOf(key);
   if (!id) return;
   if (id !== group) openGroup(id, { keepScroll: true });
@@ -616,6 +617,7 @@ function focusKey(key) {
   el.classList.add('flash');
   const input = el.querySelector(`.lang:${previewLang === 'en' ? 'last-child' : 'first-child'} textarea, input, textarea`);
   input?.focus({ preventScroll: true });
+  if (select) input?.select();
   document.body.dataset.view = 'edit';
 }
 
@@ -626,7 +628,7 @@ function buildPreviewBar() {
   $('#pages').replaceChildren(...PREVIEW_PAGES.map((p) => h('button', { type: 'button', 'data-page': p.page, onclick: () => showPage(p.page) }, p.label)));
   document.querySelectorAll('#devices button').forEach((b) => b.addEventListener('click', () => setDevice(b.dataset.device)));
   window.addEventListener('resize', fitFrame);
-  setDevice('desktop');
+  setDevice(matchMedia('(max-width: 900px)').matches ? 'phone' : 'desktop');
 }
 
 function showPage(target) {
